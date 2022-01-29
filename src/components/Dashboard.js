@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import Loading from "./Loading";
 import classnames from "classnames";
+import Panel   from "./Panel";
 
 const data = [
   {
@@ -36,7 +37,16 @@ class Dashboard extends Component {
       return <Loading />;
     }
 
-    return <main className={dashboardClasses} />;
+    const panels = data.map(panel => (
+      <Panel
+        key={panel.id}
+        id={panel.id}
+        label={panel.label}
+        value={panel.value}
+      />
+    ));
+
+     return <main className={dashboardClasses}>{panels}</main>;
   }
 }
 
